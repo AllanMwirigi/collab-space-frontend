@@ -16,14 +16,12 @@ function App() {
 
   const toggleMembers = () => {
     if (!modalOpen) {
-      if (memberElems == null) {
-        const mJson = sessionStorage.getItem('members');
-        if (mJson) {
-          const members = JSON.parse(mJson);
-          memberElems =  Object.keys(members).map(key => 
-            <span key={key}> - {members[key]}</span>
-          );
-        }
+      const mJson = sessionStorage.getItem('members');
+      if (mJson) {
+        const members = JSON.parse(mJson);
+        memberElems =  Object.keys(members).map(key => 
+          <span key={key}> - {members[key]}</span>
+        );
       }
       setModalOpen(true);
     } else {

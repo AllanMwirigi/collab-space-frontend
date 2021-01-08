@@ -22,6 +22,12 @@ export default class Workspace extends React.Component {
 
   componentDidMount() {
     this.socketIo.on('join-room', (otherUserName) => {
+      const mJson = sessionStorage.getItem('members');
+      if (mJson) {
+        const members = JSON.parse(mJson);
+        members[otherUserName] = otherUserName;
+        sessionStorage.setItem('members', JSON.stringify(members));
+      }
       toast.info(`${otherUserName} has joined this workspace`, { autoClose: false });
     });
     this.socketIo.on('leave-room', (otherUserName) => {

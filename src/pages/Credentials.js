@@ -38,11 +38,16 @@ export default function Credentials(props) {
         setRequestPending(false);
         props.setVerified(true); // have parent (App.js) change to the next page
       } catch (error) {
-        if (error.response.status === 400) {
-          toast.error("This workspace already exists\nLog in Instead", { autoClose: false });
+        if (error) {
+          if (error.response.status === 400) {
+            toast.error("This workspace already exists\nLog in Instead", { autoClose: false });
+          } else {
+            toast.error('Something went wrong');
+          }
         } else {
           toast.error('Something went wrong');
         }
+        
         setRequestPending(false);
       }
     } else {
