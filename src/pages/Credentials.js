@@ -56,14 +56,19 @@ export default function Credentials(props) {
         setRequestPending(false);
         props.setVerified(true); // have parent (App.js) change to the next page
       } catch (error) {
-        if (error.response.status === 404) {
-          toast.error("Workspace not found\nCreate it instead", { autoClose: false })
-        }
-        else if (error.response.status === 403) {
-          toast.error("Invalid Password");
+        if (error) {
+          if (error.response.status === 404) {
+            toast.error("Workspace not found\nCreate it instead", { autoClose: false })
+          }
+          else if (error.response.status === 403) {
+            toast.error("Invalid Password");
+          } else {
+            toast.error('Something went wrong');
+          }
         } else {
           toast.error('Something went wrong');
         }
+        
         setRequestPending(false);
       }
     }
