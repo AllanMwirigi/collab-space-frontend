@@ -1,0 +1,12 @@
+spec:
+  name: collab-space
+  static-sites:
+  - name: collab-space
+    git:
+      branch: main
+      repo_clone_url: https://github.com/AllanMwirigi/collab-space-frontend.git
+    envs:
+    - key: REACT_APP_ENV
+      value: "production"
+    - key: REACT_APP_PROD_API_URL
+      value: "Enter the URL of the Collab Space backend"
